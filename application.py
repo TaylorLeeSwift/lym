@@ -11,7 +11,7 @@ app = Flask(__name__)
 us_cities_csv_file_path = r'us-cities.csv'
 df = pd.read_csv(us_cities_csv_file_path)
 cities_df = pd.read_csv('us-cities.csv')
-reviews_df = pd.read_csv('amazon-reviews1.csv')
+reviews_df = pd.read_csv('amazon-reviews.csv')
 
 @app.route('/')
 def index():
