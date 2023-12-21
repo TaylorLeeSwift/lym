@@ -4,38 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yiming Li  6417   Yilong Xiao  6029
-        Closest Cities</title>
+    <title>City Data</title>
 </head>
 <body>
-    <h1>Closest Cities Yiming Li  6417   Yilong Xiao  6029</h1>
-    <form action="/data/closest_cities" method="get">
-        <label for="city">City Name:</label>
+    <h1>City Data</h1>
+    <form action="/get_closest_cities" method="post">
+        <label for="city">City:</label>
         <input type="text" id="city" name="city" required>
-        <br>
-        <label for="page_size">Page Size:</label>
-        <input type="number" id="page_size" name="page_size" value="50">
-        <br>
-        <label for="page">Page Number:</label>
-        <input type="number" id="page" name="page" value="0">
-        <br>
-        <input type="submit" value="Get Closest Cities">
+
+        <label for="page">Page:</label>
+        <input type="number" id="page" name="page" value="0" required>
+
+        <label for="pageSize">Page Size:</label>
+        <input type="number" id="pageSize" name="page_size" value="50" required>
+
+        <button type="submit">Submit</button>
     </form>
-    <div id="result"></div>
 
-    <script>
-        document.querySelector('form').addEventListener('submit', async function (event) {
-            event.preventDefault();
+    <h1>KNN Clustering</h1>
+    <form action="/knn_reviews" method="post">
+        <label for="classes">Classes:</label>
+        <input type="number" id="classes" name="classes" value="3" required>
 
-            const city = document.getElementById('city').value;
-            const page_size = document.getElementById('page_size').value;
-            const page = document.getElementById('page').value;
+        <label for="k">K:</label>
+        <input type="number" id="k" name="k" value="3" required>
 
-            const response = await fetch(`/data/closest_cities?city=${city}&page_size=${page_size}&page=${page}`);
-            const data = await response.json();
+        <label for="words">Words:</label>
+        <input type="number" id="words" name="words" value="5" required>
 
-            document.getElementById('result').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
-        });
-    </script>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
