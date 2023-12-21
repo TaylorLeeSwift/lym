@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yiming Li  6417   Yilong Xiao  6029
+        Closest Cities</title>
+</head>
+<body>
+    <h1>Closest Cities Yiming Li  6417   Yilong Xiao  6029</h1>
+    <form action="/data/closest_cities" method="get">
+        <label for="city">City Name:</label>
+        <input type="text" id="city" name="city" required>
+        <br>
+        <label for="page_size">Page Size:</label>
+        <input type="number" id="page_size" name="page_size" value="50">
+        <br>
+        <label for="page">Page Number:</label>
+        <input type="number" id="page" name="page" value="0">
+        <br>
+        <input type="submit" value="Get Closest Cities">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const city = document.getElementById('city').value;
+            const page_size = document.getElementById('page_size').value;
+            const page = document.getElementById('page').value;
+
+            const response = await fetch(`/data/closest_cities?city=${city}&page_size=${page_size}&page=${page}`);
+            const data = await response.json();
+
+            document.getElementById('result').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        });
+    </script>
+</body>
+</html>
